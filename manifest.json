@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "Digital Clock",
+  "description": "A digital clock for the browser",
+  "version": "0.1",
+  "browser_action": {
+  },
+
+  "background": {
+    "page": "background.html"
+  },
+  "permissions": [
+    "storage"
+  ]
+}
