@@ -27,11 +27,18 @@ function drawClock(items) {
 
   ctx.fillStyle = "white";
   ctx.font = "bold 12px Consolas";
-  ctx.fillText(hh, 0, 15);
+  
+  if (conf["reverse"]["checked"] == true) {
+    ctx.fillText(mm, 0, 18);
+    browser.browserAction.setBadgeText({ text: hh + ":"});
+  }
+  else {
+    ctx.fillText(hh, 0, 18);
+    browser.browserAction.setBadgeText({ text: ":" + mm });
+  }
 
   ctx.restore();
 
-  browser.browserAction.setBadgeText({text: ":" + mm});
   browser.browserAction.setBadgeBackgroundColor({color: "black"});
 
   chrome.browserAction.setIcon({

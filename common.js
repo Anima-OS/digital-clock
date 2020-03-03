@@ -7,5 +7,8 @@ chrome.storage.local.set({
 var conf = {
   "title": {
     "format": "MMMM DD Y (ddd) HH:mm:ss"
+  },
+  "reverse": {
+    "checked": false
   }
 };
