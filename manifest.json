@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Digital Clock",
   "description": "A digital clock for the browser",
-  "version": "1.0",
+  "version": "1.1",
   "browser_action": {
     "default_popup": "options.html"
   },
