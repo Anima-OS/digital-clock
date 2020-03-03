@@ -11,11 +11,9 @@ function saveOptions(items) {
   $("#reverse").on("change", function(e){
     if ($("#reverse").prop("checked") == true) {
     conf["reverse"]["checked"] = true;
-    console.log("true");
     }
     else {
       conf["reverse"]["checked"] = false;
-      console.log("false");
     }
     chrome.storage.local.set({
       "conf": JSON.stringify(conf)
