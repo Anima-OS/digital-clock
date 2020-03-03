@@ -7,6 +7,10 @@ function saveOptions(items) {
     } catch (e) {}
   }
 
+  if (conf["reverse"]["checked"] == true) {
+    $("#reverse").prop("checked", true)
+  }
+
   $("#reverse").val(conf["reverse"]["checked"]);
   $("#reverse").on("change", function(e){
     if ($("#reverse").prop("checked") == true) {
