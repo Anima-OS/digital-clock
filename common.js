@@ -10,5 +10,8 @@ var conf = {
   },
   "reverse": {
     "checked": false
+  },
+  "military": {
+    "checked": true
   }
 };

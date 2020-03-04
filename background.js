@@ -7,11 +7,11 @@ function drawClock(items) {
   let ss = d.getSeconds().toString().padStart(2, "0");
   let mm = d.getMinutes().toString().padStart(2, "0");
   let hh = d.getHours().toString().padStart(2, "0");
-  
+
   if (!(typeof items["conf"] === "undefined")) {
     try {
       conf = JSON.parse(items["conf"]);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   browser.browserAction.setTitle({
@@ -27,19 +27,45 @@ function drawClock(items) {
 
   ctx.fillStyle = "white";
   ctx.font = "bold 12px Consolas";
-  
+
   if (conf["reverse"]["checked"] == true) {
-    ctx.fillText(mm, 0, 18);
-    browser.browserAction.setBadgeText({ text: hh + ":"});
+    if (conf["military"]["checked"] == false) {
+      if (hh > 12) {
+        hh -= 12;
+        ctx.fillText(mm, 0, 18);
+        browser.browserAction.setBadgeText({ text: hh + "•" });
+      }
+      else {
+        ctx.fillText(mm, 0, 18);
+        browser.browserAction.setBadgeText({ text: hh + ":" });
+      }
+    }
+    else {
+      ctx.fillText(mm, 0, 18);
+      browser.browserAction.setBadgeText({ text: hh + ":" });
+    }
   }
   else {
-    ctx.fillText(hh, 0, 18);
-    browser.browserAction.setBadgeText({ text: ":" + mm });
+    if (conf["military"]["checked"] == false) {
+      if (hh > 12) {
+        hh -= 12;
+        ctx.fillText(hh, 0, 18);
+        browser.browserAction.setBadgeText({ text: "•" + mm });
+      }
+      else {
+        ctx.fillText(hh, 0, 18);
+        browser.browserAction.setBadgeText({ text: ":" + mm });
+      }
+    }
+    else {
+      ctx.fillText(hh, 0, 18);
+      browser.browserAction.setBadgeText({ text: ":" + mm });
+    }
   }
 
   ctx.restore();
 
-  browser.browserAction.setBadgeBackgroundColor({color: "black"});
+  browser.browserAction.setBadgeBackgroundColor({ color: "black" });
 
   chrome.browserAction.setIcon({
     imageData: ctx.getImageData(0, 0, canvas.width, canvas.height)
@@ -51,6 +77,6 @@ function getClock() {
 }
 
 getClock();
-setInterval(function() {
+setInterval(function () {
   getClock()
 }, 1000);
